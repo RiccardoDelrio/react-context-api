@@ -1,4 +1,6 @@
 import PostPage from "./components/PostPage"
+import FilmContext from "./contexts/FilmContext"
+
 const films = [
   {
     id: 1,
@@ -37,13 +39,17 @@ const films = [
     img: "/ilpadrino.jpg"
   }
 ]
+
 function App() {
 
   return (
     <>
-      <PostPage></PostPage>
+      <FilmContext.Provider value={films}>
+        <PostPage></PostPage>
+
+      </FilmContext.Provider>
     </>
   )
 }
 
-export default App
+export default App 

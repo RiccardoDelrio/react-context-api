@@ -1,22 +1,24 @@
+import { useContext } from "react"
+import FilmContext from "../contexts/FilmContext"
+
 export default function PostList() {
+    const films = useContext(FilmContext);
+
     return (
         <>
-            <div className="col">
-                <div class="card d-flex ">
-                    <div>
-                        <img class="card-img-top" src="" alt="Title" />
-
-                    </div>
-                    <div class="card-body  ">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
+            {films.map((film) => (
+                <div className="col" key={film.id}>
+                    <div className="card d-flex">
+                        <div>
+                            <img className="card-img-top" src={film.img} alt={film.titolo} />
+                        </div>
+                        <div className="card-body">
+                            <h4 className="card-title">{film.titolo}</h4>
+                            <p className="card-text">{film.descrizioneBreve}</p>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
-
+            ))}
         </>
-
     )
 }
