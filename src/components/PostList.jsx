@@ -11,6 +11,7 @@ export default function PostList() {
                     <Card thisFilms={prodotto}></Card>
                 </div>
             ))}
+
         </>
     )
 }
