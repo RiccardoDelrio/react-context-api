@@ -7,10 +7,15 @@ export default function PostList() {
     return (
         <>
             {films.map((film) => (
-                <div className="col" key={film.id}>
+                <div className="col " key={film.id}>
                     <div className="card d-flex">
                         <div>
-                            <img className="card-img-top" src={film.img} alt={film.titolo} />
+                            <img
+                                className="card-img-top"
+                                src={`${film.img}`}
+                                alt={film.titolo}
+                                style={{ maxHeight: "200px", objectFit: "cover" }}
+                            />
                         </div>
                         <div className="card-body">
                             <h4 className="card-title">{film.titolo}</h4>

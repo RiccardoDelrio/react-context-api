@@ -46,7 +46,6 @@ function App() {
     <>
       <FilmContext.Provider value={films}>
         <PostPage></PostPage>
-
       </FilmContext.Provider>
     </>
   )
