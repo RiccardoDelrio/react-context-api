@@ -2,13 +2,13 @@ import { useContext } from "react"
 import FilmContext from "../contexts/FilmContext"
 import Card from "./PostCard";
 export default function PostList() {
-    const films = useContext(FilmContext);
+    const products = useContext(FilmContext);
 
     return (
         <>
-            {films.map((film) => (
-                <div className="col " key={film.id}>
-                    <Card thisFilms={film}></Card>
+            {products.slice(0, 4).map((prodotto) => (
+                <div className="col " key={prodotto.id}>
+                    <Card thisFilms={prodotto}></Card>
                 </div>
             ))}
         </>
