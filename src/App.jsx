@@ -1,15 +1,32 @@
 import PostPage from "./components/PostPage"
-import { ErrorProvider } from "./contexts/ErrorContext"
-import ProductsProvider from "./contexts/ProductsProvider"
+import FilmContext from "./contexts/FilmContext"
+import { useState, useEffect } from "react"
+import { ErrorProvider, useError } from "./contexts/ErrorContext"
 
-function App() {
+function AppContent() {
+  const [products, setProducts] = useState([])
+  const { showError } = useError()
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(() => {
+        showError("Errore nel caricamento dei prodotti")
+      })
+  }, [showError])
+
   return (
-    <ErrorProvider>
-      <ProductsProvider>
-        <PostPage />
-      </ProductsProvider>
-    </ErrorProvider>
+    <FilmContext.Provider value={products}>
+      <PostPage />
+    </FilmContext.Provider>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <ErrorProvider>
+      <AppContent />
+    </ErrorProvider>
+  )
+}

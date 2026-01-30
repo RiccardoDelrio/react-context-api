@@ -1,13 +1,13 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useContext } from "react"
 
-export const ErrorContext = createContext()
+const ErrorContext = createContext()
 
 export function ErrorProvider({ children }) {
     const [error, setError] = useState(null)
 
     const showError = (message) => {
         setError(message)
-        setTimeout(() => setError(null), 3000) // Auto-hide dopo 3 secondi
+        setTimeout(() => setError(null), 3000)
     }
 
     return (
@@ -15,5 +15,13 @@ export function ErrorProvider({ children }) {
             {children}
         </ErrorContext.Provider>
     )
+}
+
+export function useError() {
+    const context = useContext(ErrorContext)
+    if (!context) {
+        throw new Error("useError deve essere utilizzato all'interno di ErrorProvider")
+    }
+    return context
 }
 
